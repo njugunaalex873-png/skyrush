@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09090d">
+  <title>SkyRush — Fly Beyond</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="SkyRush home">
+      <span class="brand-icon">✈</span>
+      <span>SKY<span class="red">RUSH</span></span>
+    </a>
+    <span class="demo-tag">VIRTUAL PLAY</span>
+  </header>
+
+  <main class="container">
+    <section class="balance-panel">
+      <div>
+        <p class="muted">VIRTUAL BALANCE</p>
+        <h2><span id="balance">1000</span> <small>PTS</small></h2>
+      </div>
+      <button id="resetBtn" class="small-button">Reset points</button>
+    </section>
+
+    <section class="game-card">
+      <div class="game-heading">
+        <span><span class="live-dot"></span> SKY FLIGHT</span>
+        <span id="roundNumber">ROUND #1</span>
+      </div>
+
+      <div id="flightArea" class="flight-area">
+        <div class="stars" aria-hidden="true"></div>
+        <div class="horizon"></div>
+        <div id="flightPath" class="flight-path"></div>
+        <div id="plane" class="plane" aria-hidden="true">✈</div>
+
+        <div class="multiplier-wrap">
+          <div id="multiplier" class="multiplier">1.00×</div>
+          <div id="status" class="status">READY FOR TAKEOFF</div>
+        </div>
+      </div>
+
+      <div class="round-info">
+        <span id="roundMessage">Ready for the next flight?</span>
+        <span id="lastResult">Last flight: —</span>
+      </div>
+
+      <div class="controls">
+        <label class="stake-label" for="stake">
+          VIRTUAL POINTS TO PLAY
+        </label>
+        <div class="stake-row">
+          <button class="step-button" id="minusBtn" aria-label="Decrease points">−</button>
+          <input id="stake" type="number" min="10" max="1000"
+                 step="10" value="50" inputmode="numeric">
+          <button class="step-button" id="plusBtn" aria-label="Increase points">+</button>
+        </div>
+
+        <button id="playBtn" class="play-button">
+          START FLIGHT
+        </button>
+        <p class="notice">
+          Virtual points only. No real-money betting or payouts.
+        </p>
+      </div>
+    </section>
+
+    <section class="history-card">
+      <div class="section-heading">
+        <h3>Flight history</h3>
+        <span class="muted">LATEST ROUNDS</span>
+      </div>
+      <div id="history" class="history-list">
+        <p class="empty-history">Your flights will appear here.</p>
+      </div>
+    </section>
+
+    <footer>
+      <span class="footer-logo">SKYRUSH</span>
+      <p>Rise. Fly. Explore.</p>
+      <p class="muted">Original flight game interface</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+  </html>
+  
