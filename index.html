@@ -1,12 +1,14 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#09090d">
-  <title>SkyRush — Fly Beyond</title>
+  <meta name="theme-color" content="#09080e">
+  <title>SkyRush — Flight Arcade</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -14,79 +16,87 @@
       <span class="brand-icon">✈</span>
       <span>SKY<span class="red">RUSH</span></span>
     </a>
-    <span class="demo-tag">VIRTUAL PLAY</span>
+    <span class="demo-label"><span class="live-dot"></span> ARCADE MODE</span>
   </header>
 
-  <main class="container">
+  <main class="app">
     <section class="balance-panel">
       <div>
-        <p class="muted">VIRTUAL BALANCE</p>
-        <h2><span id="balance">1000</span> <small>PTS</small></h2>
-      </div>
-      <button id="resetBtn" class="small-button">Reset points</button>
-    </section>
-
-    <section class="game-card">
-      <div class="game-heading">
-        <span><span class="live-dot"></span> SKY FLIGHT</span>
-        <span id="roundNumber">ROUND #1</span>
-      </div>
-
-      <div id="flightArea" class="flight-area">
-        <div class="stars" aria-hidden="true"></div>
-        <div class="horizon"></div>
-        <div id="flightPath" class="flight-path"></div>
-        <div id="plane" class="plane" aria-hidden="true">✈</div>
-
-        <div class="multiplier-wrap">
-          <div id="multiplier" class="multiplier">1.00×</div>
-          <div id="status" class="status">READY FOR TAKEOFF</div>
+        <p class="eyebrow">VIRTUAL BALANCE</p>
+        <div class="balance-number">
+          <span id="balance">1000</span>
+          <small>PTS</small>
         </div>
       </div>
+      <button id="reset-button" class="secondary-button">Reset points</button>
+    </section>
 
-      <div class="round-info">
-        <span id="roundMessage">Ready for the next flight?</span>
-        <span id="lastResult">Last flight: —</span>
+    <section class="game-panel">
+      <div class="game-heading">
+        <span><span class="live-dot"></span> SKY FLIGHT</span>
+        <span id="round-number">ROUND #1</span>
+      </div>
+
+      <div class="flight-scene" id="flight-scene">
+        <div class="stars" aria-hidden="true"></div>
+        <div class="flight-glow"></div>
+        <svg class="flight-svg" viewBox="0 0 600 400"
+             preserveAspectRatio="none" aria-label="Animated plane flight">
+          <path id="flight-path" class="flight-path" d="M0 360 Q300 260 600 360"/>
+          <g id="plane" class="plane">
+            <text x="0" y="0" font-size="39"
+                  text-anchor="middle" dominant-baseline="middle">✈</text>
+          </g>
+        </svg>
+
+        <div class="multiplier-area">
+          <div id="multiplier" class="multiplier">1.00x</div>
+          <div id="flight-status" class="flight-status">
+            READY FOR TAKEOFF
+          </div>
+        </div>
+
+        <div id="countdown" class="countdown hidden">3</div>
+      </div>
+
+      <div class="last-flight">
+        <p id="round-message">Ready for the next flight?</p>
+        <p class="muted">Last flight: <strong id="last-flight">—</strong></p>
       </div>
 
       <div class="controls">
-        <label class="stake-label" for="stake">
-          VIRTUAL POINTS TO PLAY
-        </label>
-        <div class="stake-row">
-          <button class="step-button" id="minusBtn" aria-label="Decrease points">−</button>
-          <input id="stake" type="number" min="10" max="1000"
-                 step="10" value="50" inputmode="numeric">
-          <button class="step-button" id="plusBtn" aria-label="Increase points">+</button>
+        <label class="eyebrow" for="play-amount">VIRTUAL POINTS TO PLAY</label>
+
+        <div class="amount-row">
+          <button id="minus-button" class="step-button"
+                  aria-label="Decrease points">−</button>
+          <input id="play-amount" type="number" min="10" max="1000"
+                 step="10" value="60" inputmode="numeric">
+          <button id="plus-button" class="step-button"
+                  aria-label="Increase points">+</button>
         </div>
 
-        <button id="playBtn" class="play-button">
-          START FLIGHT
-        </button>
-        <p class="notice">
+        <button id="play-button" class="main-button">START FLIGHT</button>
+
+        <p class="disclaimer">
           Virtual points only. No real-money betting or payouts.
         </p>
       </div>
     </section>
 
-    <section class="history-card">
-      <div class="section-heading">
-        <h3>Flight history</h3>
-        <span class="muted">LATEST ROUNDS</span>
+    <section class="history-panel">
+      <div class="history-heading">
+        <h2>RECENT FLIGHTS</h2>
+        <span class="muted">Latest first</span>
       </div>
-      <div id="history" class="history-list">
-        <p class="empty-history">Your flights will appear here.</p>
+      <div id="history-list" class="history-list">
+        <p class="muted empty-history">Your flight results will appear here.</p>
       </div>
     </section>
 
-    <footer>
-      <span class="footer-logo">SKYRUSH</span>
-      <p>Rise. Fly. Explore.</p>
-      <p class="muted">Original flight game interface</p>
-    </footer>
+    <footer>SKYRUSH ARCADE <span>•</span> FLY FOR FUN</footer>
   </main>
 
-  <script src="script.js"></script>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
-  </html>
-  
+</html>
