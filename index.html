@@ -1,102 +1,120 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#09080e">
-  <title>SkyRush — Flight Arcade</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0d">
+  <title>SkyRush Arcade</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#" aria-label="SkyRush home">
-      <span class="brand-icon">✈</span>
-      <span>SKY<span class="red">RUSH</span></span>
-    </a>
-    <span class="demo-label"><span class="live-dot"></span> ARCADE MODE</span>
+    <div class="brand">✈ SKY<span>RUSH</span></div>
+    <div class="mode"><i></i> ARCADE MODE</div>
   </header>
 
   <main class="app">
-    <section class="balance-panel">
+    <section class="balance">
       <div>
-        <p class="eyebrow">VIRTUAL BALANCE</p>
-        <div class="balance-number">
-          <span id="balance">1000</span>
-          <small>PTS</small>
-        </div>
+        <small>VIRTUAL BALANCE</small>
+        <div class="balance-value"><span id="balance">1000</span> <small>PTS</small></div>
       </div>
-      <button id="reset-button" class="secondary-button">Reset points</button>
+      <button id="reset">Reset points</button>
     </section>
 
-    <section class="game-panel">
-      <div class="game-heading">
-        <span><span class="live-dot"></span> SKY FLIGHT</span>
-        <span id="round-number">ROUND #1</span>
+    <div class="results-strip" id="results-strip">
+      <span>1.00x</span>
+      <span>1.24x</span>
+      <span>2.18x</span>
+      <span>1.67x</span>
+      <span>3.40x</span>
+    </div>
+
+    <section class="flight-card">
+      <div class="flight-heading">
+        <span><i></i> SKY FLIGHT</span>
+        <span id="round">ROUND #1</span>
       </div>
 
-      <div class="flight-scene" id="flight-scene">
-        <div class="stars" aria-hidden="true"></div>
-        <div class="flight-glow"></div>
-        <svg class="flight-svg" viewBox="0 0 600 400"
-             preserveAspectRatio="none" aria-label="Animated plane flight">
-          <path id="flight-path" class="flight-path" d="M0 360 Q300 260 600 360"/>
-          <g id="plane" class="plane">
-            <text x="0" y="0" font-size="39"
-                  text-anchor="middle" dominant-baseline="middle">✈</text>
-          </g>
+      <div class="flight-scene" id="scene">
+        <div class="rays"></div>
+        <svg viewBox="0 0 600 350" preserveAspectRatio="none">
+          <path id="flight-path" d="M0 320 Q300 210 600 320"/>
+          <text id="plane" x="20" y="310">✈</text>
         </svg>
-
-        <div class="multiplier-area">
-          <div id="multiplier" class="multiplier">1.00x</div>
-          <div id="flight-status" class="flight-status">
-            READY FOR TAKEOFF
-          </div>
+        <div class="flight-result">
+          <div id="result-label">READY FOR TAKEOFF</div>
+          <strong id="multiplier">1.00x</strong>
+          <p id="status">Ready for the next flight?</p>
         </div>
-
         <div id="countdown" class="countdown hidden">3</div>
       </div>
 
       <div class="last-flight">
-        <p id="round-message">Ready for the next flight?</p>
-        <p class="muted">Last flight: <strong id="last-flight">—</strong></p>
+        Last flight: <strong id="last-flight">—</strong>
       </div>
+    </section>
 
-      <div class="controls">
-        <label class="eyebrow" for="play-amount">VIRTUAL POINTS TO PLAY</label>
-
-        <div class="amount-row">
-          <button id="minus-button" class="step-button"
-                  aria-label="Decrease points">−</button>
-          <input id="play-amount" type="number" min="10" max="1000"
-                 step="10" value="60" inputmode="numeric">
-          <button id="plus-button" class="step-button"
-                  aria-label="Increase points">+</button>
+    <section class="bet-panel">
+      <div class="panel-tabs">
+        <button class="tab active">Flight 1</button>
+        <button class="tab">Auto mode</button>
+      </div>
+      <label for="amount1">VIRTUAL POINTS</label>
+      <div class="bet-row">
+        <div class="amount-control">
+          <button data-step="-10" data-input="amount1">−</button>
+          <input id="amount1" type="number" min="10" value="60">
+          <button data-step="10" data-input="amount1">+</button>
         </div>
-
-        <button id="play-button" class="main-button">START FLIGHT</button>
-
-        <p class="disclaimer">
-          Virtual points only. No real-money betting or payouts.
-        </p>
+        <button class="action-button" id="action1">
+          <span id="action1-title">START FLIGHT</span>
+          <strong id="action1-value">60 PTS</strong>
+        </button>
+      </div>
+      <div class="quick-amounts">
+        <button data-amount="100" data-input="amount1">100</button>
+        <button data-amount="250" data-input="amount1">250</button>
+        <button data-amount="500" data-input="amount1">500</button>
+        <button data-amount="1000" data-input="amount1">1,000</button>
       </div>
     </section>
 
-    <section class="history-panel">
-      <div class="history-heading">
-        <h2>RECENT FLIGHTS</h2>
-        <span class="muted">Latest first</span>
+    <section class="bet-panel">
+      <div class="panel-tabs">
+        <button class="tab active">Flight 2</button>
+        <button class="tab">Auto mode</button>
       </div>
-      <div id="history-list" class="history-list">
-        <p class="muted empty-history">Your flight results will appear here.</p>
+      <label for="amount2">VIRTUAL POINTS</label>
+      <div class="bet-row">
+        <div class="amount-control">
+          <button data-step="-10" data-input="amount2">−</button>
+          <input id="amount2" type="number" min="10" value="40">
+          <button data-step="10" data-input="amount2">+</button>
+        </div>
+        <button class="action-button" id="action2">
+          <span id="action2-title">START FLIGHT</span>
+          <strong id="action2-value">40 PTS</strong>
+        </button>
+      </div>
+      <div class="quick-amounts">
+        <button data-amount="100" data-input="amount2">100</button>
+        <button data-amount="250" data-input="amount2">250</button>
+        <button data-amount="500" data-input="amount2">500</button>
+        <button data-amount="1000" data-input="amount2">1,000</button>
       </div>
     </section>
 
-    <footer>SKYRUSH ARCADE <span>•</span> FLY FOR FUN</footer>
+    <section class="history">
+      <h2>RECENT FLIGHTS</h2>
+      <div id="history">No flights yet.</div>
+    </section>
+
+    <p class="disclaimer">Virtual points only. No real-money betting or payouts.</p>
   </main>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="toast" class="toast"></div>
 </body>
 </html>
